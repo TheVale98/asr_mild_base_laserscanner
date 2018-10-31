@@ -21,7 +21,7 @@ include_directories(
 	${catkin_INCLUDE_DIRS}
 )
 
-add_executable(asr_mild_base_laserscanner 
+add_executable(sickpls 
 	src/SickPLS.cc 
 	src/SickPLSMessage.cc
 	src/SickPLSBufferMonitor.cc
@@ -29,5 +29,5 @@ add_executable(asr_mild_base_laserscanner
 
 )
 
-target_link_libraries(asr_mild_base_laserscanner   ${catkin_LIBRARIES}
+target_link_libraries(sickpls   ${catkin_LIBRARIES}
 )

@@ -32,16 +32,18 @@ THIS SOFTWARE IS PROVIDED BY THE COPYRIGHT HOLDERS AND CONTRIBUTORS "AS IS" AND 
 int main(int argc, char** argv)
 {
     //Init ROS Publisher.
-    ros::init(argc, argv, "Sick3000");
+    ros::init(argc, argv, "SickPLS");
     ros::NodeHandle n;
     std::string topic;
-    n.getParam("topic", topic);
+    n.param<std::string>("topic", topic,"/scan");
     ros::Publisher scanner_pub = n.advertise<sensor_msgs::LaserScan>(topic, 100);
     ros::Rate loop_rate(100);
     int baudrate;
     n.param("baudrate", baudrate, 500000);
     std::string serial;
-    n.getParam("serial", serial);
+    n.param<std::string>("serial",  serial, "/dev/ttyUSB0");
+
+    ROS_INFO_STREAM("serial param: "<<serial);
 
     int init_attempts = 1;
     n.param("init_attempts", init_attempts, 1);
