@@ -35,13 +35,15 @@ int main(int argc, char** argv)
     ros::init(argc, argv, "SickPLS");
     ros::NodeHandle n;
     std::string topic;
-    n.param<std::string>("topic", topic,"/scan");
+    //n.param<std::string>("topic", topic,"/scan");
+    n.param("topic", topic);
     ros::Publisher scanner_pub = n.advertise<sensor_msgs::LaserScan>(topic, 100);
     ros::Rate loop_rate(100);
     int baudrate;
     n.param("baudrate", baudrate, 500000);
     std::string serial;
-    n.param<std::string>("serial",  serial, "/dev/ttyUSB0");
+    //n.param<std::string>("serial",  serial, "/dev/ttyUSB0");
+    n.param("serial", serial);
 
     ROS_INFO_STREAM("serial param: "<<serial);
 
