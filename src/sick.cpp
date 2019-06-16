@@ -48,6 +48,13 @@ int main(int argc, char** argv)
     ROS_INFO_STREAM("serial param: ");
     ROS_INFO_STREAM(serial);
 
+     std::string vartf;
+    //n.param<std::string>("serial",  serial, "/dev/ttyUSB0");
+    n.getParam("vartf", vartf);
+
+    ROS_INFO_STREAM("tf param: ");
+    ROS_INFO_STREAM(vartf);
+
     int init_attempts = 1;
     n.param("init_attempts", init_attempts, 1);
 
@@ -85,7 +92,7 @@ int main(int argc, char** argv)
         sensor_msgs::LaserScan scan;
         scan.header.seq = count;
         scan.header.stamp = ros::Time::now();
-        scan.header.frame_id = "base_laser";
+        scan.header.frame_id = vartf;
         scan.angle_min = -90.0*DEG_TO_RAD;
         scan.angle_max = 90.0*DEG_TO_RAD;
         scan.scan_time = 0.1;
